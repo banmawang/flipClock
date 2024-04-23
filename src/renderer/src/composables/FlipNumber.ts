@@ -51,9 +51,8 @@ export default class FlipNumber {
 
   // 获取时间的数字
   getClockNums() {
-    this.nums = new Date()
-      .toLocaleTimeString()
-      .replaceAll(':', '')
+    this.nums = dayjs()
+      .format('HHmmss')
       .split('')
       .map((n) => +n)
   }

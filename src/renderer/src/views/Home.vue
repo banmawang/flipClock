@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import '@renderer/assets/flipClock.scss'
 import FlipClock from '@renderer/composables/FlipClock'
 import { onMounted } from 'vue'
+import '@renderer/assets/flipClock.scss'
+import FooterVue from '@renderer/components/footer.vue'
+
 onMounted(() => {
   const instance = new FlipClock({
     el: '#bm',
@@ -20,6 +22,7 @@ onMounted(() => {
 <template>
   <main>
     <div id="bm" class="drag"></div>
+    <FooterVue />
   </main>
 </template>
 

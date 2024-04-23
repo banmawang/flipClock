@@ -28,7 +28,8 @@ onMounted(() => {
 
 <style lang="scss">
 :root {
-  --bgColor: yellow;
+  --bgColor: #fff;
+  --width: 35px;
   --color: #000;
 }
 </style>

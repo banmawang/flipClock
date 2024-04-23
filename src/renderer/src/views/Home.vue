@@ -19,8 +19,13 @@ onMounted(() => {
 
 <template>
   <main>
-    <div id="bm"></div>
+    <div id="bm" class="drag"></div>
   </main>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+:root {
+  --bgColor: yellow;
+  --color: #000;
+}
+</style>

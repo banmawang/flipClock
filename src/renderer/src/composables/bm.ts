@@ -1,22 +1,25 @@
-class FlipClock extends FlipNumber {
-  main
-  divs
-  intervalId
-  constructor(options) {
+import FlipNumber, { OptionsType } from './FlipNumber'
+
+export default class FlipClock extends FlipNumber {
+  private main: HTMLElement
+  private divs: NodeListOf<HTMLDivElement>[] = []
+  private intervalId: NodeJS.Timeout | undefined
+
+  constructor(options: OptionsType) {
     super(options)
-    this.main = document.querySelector(options.el)
-    this.addCssElement()
+    this.main = document.querySelector(options.el)!
+    // this.addCssElement()
   }
 
   // 添加css样式
-  addCssElement() {
-    document.head.insertAdjacentHTML(
-      'afterbegin',
-      `
-      <link rel="stylesheet" href="${this.options.style}.css" />
-      `,
-    )
-  }
+  // addCssElement() {
+  //   document.head.insertAdjacentHTML(
+  //     'afterbegin',
+  //     `
+  //     <link rel="stylesheet" href="${this.options.style}.css" />
+  //     `
+  //   )
+  // }
 
   // 定时器
   render() {
@@ -40,8 +43,8 @@ class FlipClock extends FlipNumber {
       }
       div.addEventListener('animationend', () => {
         divs.forEach((div) => {
-          div.dataset.before = before
-          div.dataset.after = after
+          div.dataset.before = String(before)
+          div.dataset.after = String(after)
         })
         div.classList.remove('flipDown')
       })
@@ -57,12 +60,14 @@ class FlipClock extends FlipNumber {
 
   // 获取div数量
   getDivs() {
-    this.divs = Array.from(this.main.querySelectorAll('section')).map((section) => section.querySelectorAll('div'))
+    this.divs = Array.from(this.main.querySelectorAll('section')).map((section) =>
+      section.querySelectorAll('div')
+    )
   }
 
   // 创建元素
   createSectionElement() {
-    this.nums.forEach((num, index) => {
+    this.nums.forEach((_num, index) => {
       const { before, after } = this.getNextNum(index)
       this.main.insertAdjacentHTML(
         'beforeend',
@@ -71,7 +76,7 @@ class FlipClock extends FlipNumber {
           <div data-before="${before}" data-after="${after}"></div>
           <div data-before="${before}" data-after="${after}"></div>
         </section> 
-        `,
+        `
       )
       if (index % 2 && index != this.nums.length - 1) {
         this.main.insertAdjacentHTML('beforeend', '<p></p>')

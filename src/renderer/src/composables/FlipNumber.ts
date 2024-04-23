@@ -3,19 +3,20 @@ import dayjs from 'dayjs'
 export type OptionsType = {
   el: string
   type: string
-  timing: Record<string, number>
+  timing: Record<dayjs.ManipulateType, number>
 }
 
 export default class FlipNumber {
   protected nums: number[] = []
-  options
-  endTime
-  constructor(options) {
+  // options
+  endTime: dayjs.Dayjs
+  constructor(protected options: OptionsType) {
     this.options = Object.assign({ type: 'clock', style: 'bm' }, options)
+    this.endTime = dayjs()
+
     if (options.type != 'clock') {
-      this.endTime = dayjs()
       Object.entries(options.timing).forEach(
-        ([type, num]) => (this.endTime = this.endTime.add(num, type))
+        ([type, num]) => (this.endTime = this.endTime.add(num, type as dayjs.ManipulateType))
       )
     }
   }
@@ -32,17 +33,17 @@ export default class FlipNumber {
 
   // 倒计时的数字
   getTimingNums() {
-    let hour = this.endTime.diff(dayjs(), 'hour')
-    let minute = this.endTime.diff(dayjs().add(hour, 'hour'), 'minute')
-    let second = this.endTime.diff(dayjs().add(hour, 'hour').add(minute, 'minute'), 'second')
+    const hour = this.endTime.diff(dayjs(), 'hour')
+    const minute = this.endTime.diff(dayjs().add(hour, 'hour'), 'minute')
+    const second = this.endTime.diff(dayjs().add(hour, 'hour').add(minute, 'minute'), 'second')
 
-    hour = hour > 9 ? hour : '0' + hour
-    minute = minute > 9 ? minute : '0' + minute
-    second = second > 9 ? second : '0' + second
+    const hourString = hour > 9 ? hour : '0' + hour
+    const minuteString = minute > 9 ? minute : '0' + minute
+    const secondString = second > 9 ? second : '0' + second
 
     // 取数字的数量，有小时的时候取6位
-    const len = hour == '00' ? 4 : 6
-    this.nums = (hour + '' + minute + second)
+    const len = hourString == '00' ? 4 : 6
+    this.nums = (hourString + '' + minuteString + secondString)
       .substring(6 - len)
       .split('')
       .map((n) => +n)
@@ -58,7 +59,7 @@ export default class FlipNumber {
   }
 
   // 定时器数字
-  getNextTimingNums(index) {
+  getNextTimingNums(index: number) {
     const before = this.nums[index]
     let after = before - 1
     if (index % 2) {
@@ -70,7 +71,7 @@ export default class FlipNumber {
   }
 
   // 时间的数字
-  getClockNextNums(index) {
+  getClockNextNums(index: number) {
     const before = this.nums[index]
     let after = before + 1
     if (index % 2) {

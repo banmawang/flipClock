@@ -6,8 +6,8 @@ import icon from '../../resources/icon.png?asset'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 330,
-    height: 100,
+    width: 300,
+    height: 400,
     show: false,
     x: 1000,
     y: 60,
@@ -23,6 +23,8 @@ function createWindow(): void {
       sandbox: false
     }
   })
+
+  mainWindow.setIgnoreMouseEvents(true)
 
   // 打开调试工具
   if (is.dev) {

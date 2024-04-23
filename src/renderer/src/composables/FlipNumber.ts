@@ -2,8 +2,8 @@ import dayjs from 'dayjs'
 
 export type OptionsType = {
   el: string
-  type: string
-  timing: Record<dayjs.ManipulateType, number>
+  type: 'clock' | 'timing'
+  timing: Partial<Record<dayjs.ManipulateType, number>>
 }
 
 export default class FlipNumber {

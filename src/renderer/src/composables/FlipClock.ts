@@ -8,6 +8,7 @@ export default class FlipClock extends FlipNumber {
   constructor(options: OptionsType) {
     super(options)
     this.main = document.querySelector(options.el)!
+    this.main.classList.add('main')
     // this.addCssElement()
   }
 
@@ -27,6 +28,7 @@ export default class FlipClock extends FlipNumber {
     this.intervalId = setInterval(() => {
       this.getNums()
       this.updateDivNumber()
+      console.log('runing...')
       if (this.nums.filter((n) => n > 0).length == 0) {
         clearInterval(this.intervalId)
       }

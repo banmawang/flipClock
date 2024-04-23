@@ -20,6 +20,11 @@ function createWindow(): void {
     }
   })
 
+  // 打开调试工具
+  if (is.dev) {
+    mainWindow.webContents.openDevTools()
+  }
+
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })

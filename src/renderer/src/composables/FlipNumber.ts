@@ -9,17 +9,20 @@ export type OptionsType = {
 export default class FlipNumber {
   protected nums: number[] = []
   // options
-  endTime: dayjs.Dayjs
+  protected endTime: dayjs.Dayjs | undefined
   constructor(protected options: OptionsType) {
     this.options = Object.assign({ type: 'clock', style: 'bm' }, options)
-    this.endTime = dayjs()
+  }
 
-    if (options.type != 'clock') {
-      Object.entries(options.timing).forEach(
-        ([type, num]) => (this.endTime = this.endTime.add(num, type as dayjs.ManipulateType))
+  init() {
+    this.endTime = dayjs()
+    if (this.options.type != 'clock') {
+      Object.entries(this.options.timing).forEach(
+        ([type, num]) => (this.endTime = this.endTime!.add(num, type as dayjs.ManipulateType))
       )
     }
   }
+
   // 获取下一次的渲染数字
   getNextNum(index) {
     return this.options.type == 'clock'
@@ -33,9 +36,9 @@ export default class FlipNumber {
 
   // 倒计时的数字
   getTimingNums() {
-    const hour = this.endTime.diff(dayjs(), 'hour')
-    const minute = this.endTime.diff(dayjs().add(hour, 'hour'), 'minute')
-    const second = this.endTime.diff(dayjs().add(hour, 'hour').add(minute, 'minute'), 'second')
+    const hour = this.endTime!.diff(dayjs(), 'hour')
+    const minute = this.endTime!.diff(dayjs().add(hour, 'hour'), 'minute')
+    const second = this.endTime!.diff(dayjs().add(hour, 'hour').add(minute, 'minute'), 'second')
 
     const hourString = hour > 9 ? hour : '0' + hour
     const minuteString = minute > 9 ? minute : '0' + minute

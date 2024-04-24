@@ -9,6 +9,11 @@ export default class FlipClock extends FlipNumber {
     super(options)
   }
 
+  config(options: OptionsType) {
+    this.options = options
+    return this
+  }
+
   // 卸载
   destroy() {
     clearInterval(this.intervalId)
@@ -18,6 +23,7 @@ export default class FlipClock extends FlipNumber {
 
   // 定时器
   render() {
+    this.init()
     this.main = document.querySelector(this.options.el)! as HTMLDivElement
     this.main.classList.add('main')
     this.clock()

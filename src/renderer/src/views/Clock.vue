@@ -10,7 +10,10 @@ const instance = new FlipClock({ el: '#bm', ...config.clock })
 watch(
   () => config.clock.type,
   () => {
-    instance.destroy().render()
+    instance
+      .destroy()
+      .config({ el: '#bm', ...config.clock })
+      .render()
   }
 )
 

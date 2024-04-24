@@ -7,7 +7,7 @@ import './ipc'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 300,
+    width: 310,
     height: 400,
     show: false,
     x: 1000,

@@ -1,29 +1,25 @@
 import FlipNumber, { OptionsType } from './FlipNumber'
 
 export default class FlipClock extends FlipNumber {
-  private main: HTMLElement
+  private main: HTMLElement | undefined
   private divs: NodeListOf<HTMLDivElement>[] = []
   private intervalId: NodeJS.Timeout | undefined
 
   constructor(options: OptionsType) {
     super(options)
-    this.main = document.querySelector(options.el)!
-    this.main.classList.add('main')
-    // this.addCssElement()
   }
 
-  // 添加css样式
-  // addCssElement() {
-  //   document.head.insertAdjacentHTML(
-  //     'afterbegin',
-  //     `
-  //     <link rel="stylesheet" href="${this.options.style}.css" />
-  //     `
-  //   )
-  // }
+  // 卸载
+  destroy() {
+    clearInterval(this.intervalId)
+    this.main!.innerHTML = ''
+    return this
+  }
 
   // 定时器
   render() {
+    this.main = document.querySelector(this.options.el)! as HTMLDivElement
+    this.main.classList.add('main')
     this.clock()
     this.intervalId = setInterval(() => {
       this.getNums()
@@ -61,7 +57,7 @@ export default class FlipClock extends FlipNumber {
 
   // 获取div数量
   getDivs() {
-    this.divs = Array.from(this.main.querySelectorAll('section')).map((section) =>
+    this.divs = Array.from(this.main!.querySelectorAll('section')).map((section) =>
       section.querySelectorAll('div')
     )
   }
@@ -70,7 +66,7 @@ export default class FlipClock extends FlipNumber {
   createSectionElement() {
     this.nums.forEach((_num, index) => {
       const { before, after } = this.getNextNum(index)
-      this.main.insertAdjacentHTML(
+      this.main!.insertAdjacentHTML(
         'beforeend',
         `
         <section>
@@ -80,7 +76,7 @@ export default class FlipClock extends FlipNumber {
         `
       )
       if (index % 2 && index != this.nums.length - 1) {
-        this.main.insertAdjacentHTML('beforeend', '<p></p>')
+        this.main!.insertAdjacentHTML('beforeend', '<p></p>')
       }
     })
   }

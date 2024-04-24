@@ -2,7 +2,6 @@
 import FlipClock from '@renderer/composables/FlipClock'
 import { onMounted, watch } from 'vue'
 import '@renderer/assets/flipClock.scss'
-import FooterVue from '@renderer/components/footer.vue'
 import { useConfigStore } from '@renderer/store/useConfigStore'
 const { config } = useConfigStore()
 const instance = new FlipClock({ el: '#bm', ...config.clock })
@@ -29,7 +28,6 @@ onMounted(() => {
       class="drag"
       :style="{ '--bgColor': config.clock.bgColor, '--color': config.clock.color }"
     ></div>
-    <FooterVue />
   </main>
 </template>
 

@@ -24,7 +24,7 @@ function createWindow(): void {
     }
   })
 
-  mainWindow.setIgnoreMouseEvents(true)
+  mainWindow.setIgnoreMouseEvents(true, { forward: true })
 
   // 打开调试工具
   if (is.dev) {

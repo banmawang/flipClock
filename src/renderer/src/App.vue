@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useMouseEvent from './composables/useMouseEvent'
+
+const { bm } = useMouseEvent()
+
+bm()
+</script>
 
 <template>
   <Suspense>

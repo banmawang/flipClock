@@ -10,7 +10,7 @@ bm()
   <Suspense>
     <RouterView v-slot="{ Component }">
       <div class="drag">
-        <component :is="Component" />
+        <component :is="Component" class="flex flex-col justify-center items-center" />
       </div>
     </RouterView>
   </Suspense>

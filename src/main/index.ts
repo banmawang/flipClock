@@ -2,6 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import './ipc'
 
 function createWindow(): void {
   // Create the browser window.
@@ -24,7 +25,7 @@ function createWindow(): void {
     }
   })
 
-  mainWindow.setIgnoreMouseEvents(true, { forward: true })
+  // mainWindow.setIgnoreMouseEvents(true, { forward: true })
 
   // 打开调试工具
   if (is.dev) {

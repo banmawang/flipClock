@@ -8,7 +8,11 @@ bm()
 
 <template>
   <Suspense>
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <div class="drag">
+        <component :is="Component" />
+      </div>
+    </RouterView>
   </Suspense>
 </template>
 

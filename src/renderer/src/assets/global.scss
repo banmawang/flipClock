@@ -7,11 +7,14 @@ input,
 select,
 textarea,
 option {
-  // -webkit-app-region: no-drag;
+  -webkit-app-region: no-drag;
 }
 
 body {
-  background-color: yellowgreen;
   width: 100vw;
   height: 100vh;
+}
+
+#app {
+  padding: 5px;
 }

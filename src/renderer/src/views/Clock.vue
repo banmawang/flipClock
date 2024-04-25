@@ -20,6 +20,7 @@ onMounted(() => {
   instance.render()
 })
 
+// 刷新倒计时
 const refresh = () => {
   if (config.clock.type == 'clock') return
   instance

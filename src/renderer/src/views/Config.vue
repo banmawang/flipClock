@@ -75,6 +75,6 @@ h2 {
 }
 
 .el-popper {
-  -webkit-app-region: no-drag !important;
+  -webkit-app-region: no-drag;
 }
 </style>

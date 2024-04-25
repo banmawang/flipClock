@@ -26,7 +26,7 @@
 .main > p::after {
   content: ':';
   display: block;
-  @include size(10px, $height);
+  @include size(20px, $height);
   font: bold $height arial;
   text-align: center;
   line-height: $height;

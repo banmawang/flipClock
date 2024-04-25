@@ -7,43 +7,43 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: #dcdcdc;
-  @include size(100vw, 100vh);
-  @include flex();
-}
+// body {
+//   background-color: #dcdcdc;
+//   @include size(100vw, 100vh);
+//   @include flex();
+// }
 
-main {
+.main {
   display: flex;
   gap: 10px;
 }
 
-main > section {
+.main > section {
   @include size($width, $height);
   position: relative;
 }
 
-main > p::after {
+.main > p::after {
   content: ':';
   display: block;
-  @include size(50px, $height);
+  @include size(20px, $height);
   font: bold $height arial;
   text-align: center;
   line-height: $height;
 }
 
-main > section > div {
+.main > section > div {
   position: absolute;
   &::before,
   &::after {
     display: block;
     border-radius: 5px;
-    @include size($width, $height/2);
+    @include size($width, calc($height/2));
     text-align: center;
     font: bold $height arial;
     overflow: hidden;
-    color: #000;
-    // background-color: $bgColor;
+    color: $color;
+    background-color: $bgColor;
   }
   &::before {
     content: attr(data-before);
@@ -55,10 +55,10 @@ main > section > div {
   }
 }
 
-main > section > div:nth-child(2) {
+.main > section > div:nth-child(2) {
   // display: none;
   opacity: 0;
-  @include size($width, $height/2);
+  @include size($width, calc($height/2));
   // transform-style: preserve-3d;
   backface-visibility: hidden;
   transition: 0.5s;
@@ -73,11 +73,11 @@ main > section > div:nth-child(2) {
   }
 }
 
-main > section {
+.main > section {
   perspective: 200px;
 }
 
-main section > div:nth-child(2).flipDown {
+.main section > div:nth-child(2).flipDown {
   animation-name: flipDown;
   animation-duration: 0.5s;
   animation-fill-mode: both;

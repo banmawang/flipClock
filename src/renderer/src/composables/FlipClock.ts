@@ -33,7 +33,7 @@ export default class FlipClock extends FlipNumber {
       if (this.nums.filter((n) => n > 0).length == 0) {
         clearInterval(this.intervalId)
       }
-    }, 500)
+    }, 300)
   }
 
   // 执行div的渲染

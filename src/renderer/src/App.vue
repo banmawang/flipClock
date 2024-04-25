@@ -3,9 +3,9 @@ import useMouseEvent from './composables/useMouseEvent'
 import FooterVue from '@renderer/components/footer.vue'
 import { Crown } from '@icon-park/vue-next'
 
-const { bm } = useMouseEvent()
+const { setIgnoreMouseEvents } = useMouseEvent()
 
-bm()
+setIgnoreMouseEvents()
 </script>
 
 <template>

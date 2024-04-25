@@ -1,5 +1,5 @@
 export default () => {
-  const bm = () => {
+  const setIgnoreMouseEvents = () => {
     // 鼠标放在app上关闭穿透
     const el = document.querySelector('#app')! as HTMLDivElement
     el.addEventListener('mouseenter', () => {
@@ -13,5 +13,5 @@ export default () => {
       }
     })
   }
-  return { bm }
+  return { setIgnoreMouseEvents }
 }

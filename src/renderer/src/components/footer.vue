@@ -21,7 +21,7 @@ main {
 }
 
 .run {
-  animation: identifier 3s infinite both;
+  animation: identifier 10s infinite both;
 }
 
 @keyframes identifier {

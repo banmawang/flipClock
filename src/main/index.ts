@@ -7,8 +7,8 @@ import './ipc'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 310,
-    height: 400,
+    width: 350,
+    height: 480,
     show: false,
     x: 1000,
     y: 60,
@@ -28,9 +28,9 @@ function createWindow(): void {
   // mainWindow.setIgnoreMouseEvents(true, { forward: true })
 
   // 打开调试工具
-  if (is.dev) {
-    mainWindow.webContents.openDevTools()
-  }
+  // if (is.dev) {
+  //   mainWindow.webContents.openDevTools()
+  // }
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()

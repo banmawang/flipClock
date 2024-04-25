@@ -19,6 +19,13 @@ watch(
 onMounted(() => {
   instance.render()
 })
+
+const refresh = () => {
+  instance
+    .destroy()
+    .config({ el: '#bm', ...config.clock })
+    .render()
+}
 </script>
 
 <template>
@@ -27,6 +34,7 @@ onMounted(() => {
       id="bm"
       class="drag"
       :style="{ '--bgColor': config.clock.bgColor, '--color': config.clock.color }"
+      @dblclick="refresh"
     ></div>
   </main>
 </template>

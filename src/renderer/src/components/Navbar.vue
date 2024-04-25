@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { AlarmClock, Time } from '@icon-park/vue-next'
 import { useConfigStore } from '@renderer/store/useConfigStore'
-
+import { useRouter } from 'vue-router'
+const rputer = useRouter()
 const { config } = useConfigStore()
 
 const toggle = () => {
   config.clock.type = config.clock.type == 'clock' ? 'timing' : 'clock'
+  rputer.push({ name: 'clock' })
 }
 </script>
 

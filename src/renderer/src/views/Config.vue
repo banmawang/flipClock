@@ -4,8 +4,8 @@ const { config } = useConfigStore()
 </script>
 
 <template>
-  <main class="p-3 text-white drag bg-white bg-opacity-30 rounded-lg">
-    <div class="bg-[#34495e] rounded-lg w-full p-2">
+  <main class="p-3 text-white bg-white bg-opacity-30 rounded-lg">
+    <div class="bg-[#34495e] rounded-lg w-full p-2 h-[400px] overflow-y-auto nodrag">
       <div class="card">
         <h2>时钟颜色</h2>
         <div class="body">
@@ -33,6 +33,25 @@ const { config } = useConfigStore()
           <div class="block">
             秒钟
             <el-input-number v-model="config.clock.timing.second" size="small" />
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>底部信息</h2>
+        <div class="body">
+          <div class="block">
+            文字内容
+            <el-input v-model="config.footer.content" />
+          </div>
+        </div>
+        <div class="body">
+          <div class="block">
+            背景颜色
+            <el-color-picker v-model="config.footer.bgColor" />
+          </div>
+          <div class="block">
+            文字颜色
+            <el-color-picker v-model="config.footer.color" />
           </div>
         </div>
       </div>

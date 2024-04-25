@@ -4,8 +4,8 @@ const { config } = useConfigStore()
 </script>
 
 <template>
-  <main class="p-3 text-white bg-white bg-opacity-30 rounded-lg">
-    <div class="bg-[#34495e] rounded-lg w-full p-2 h-[400px] overflow-y-auto nodrag">
+  <main class="p-3 text-white bg-white bg-opacity-30 rounded-lg select-none drag">
+    <div class="bg-[#34495e] rounded-lg w-full p-2 h-[350px] overflow-y-auto nodrag">
       <div class="card">
         <h2>时钟颜色</h2>
         <div class="body">
@@ -22,17 +22,17 @@ const { config } = useConfigStore()
       <div class="card">
         <h2>倒计时时间</h2>
         <div class="card flex flex-col gap-2">
-          <div class="block">
-            小时
-            <el-input-number v-model="config.clock.timing.hour" :min="1" :max="10" size="small" />
+          <div class="flex items-center gap-2">
+            <span>小时</span>
+            <el-input-number v-model="config.clock.timing.hour" :min="0" size="small" />
           </div>
-          <div class="block">
-            分钟
-            <el-input-number v-model="config.clock.timing.minute" size="small" />
+          <div class="flex items-center gap-2">
+            <span>分钟</span>
+            <el-input-number v-model="config.clock.timing.minute" :min="0" size="small" />
           </div>
-          <div class="block">
-            秒钟
-            <el-input-number v-model="config.clock.timing.second" size="small" />
+          <div class="flex items-center gap-2">
+            <span>秒钟</span>
+            <el-input-number v-model="config.clock.timing.second" :min="0" size="small" />
           </div>
         </div>
       </div>

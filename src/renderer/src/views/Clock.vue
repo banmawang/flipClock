@@ -21,6 +21,7 @@ onMounted(() => {
 })
 
 const refresh = () => {
+  if (config.clock.type == 'clock') return
   instance
     .destroy()
     .config({ el: '#bm', ...config.clock })
@@ -32,17 +33,10 @@ const refresh = () => {
   <main>
     <div
       id="bm"
-      class="drag"
       :style="{ '--bgColor': config.clock.bgColor, '--color': config.clock.color }"
       @dblclick="refresh"
     ></div>
   </main>
 </template>
 
-<style lang="scss">
-:root {
-  // --bgColor: #fff;
-  // --width: 35px;
-  // --color: #000;
-}
-</style>
+<style lang="scss"></style>

@@ -41,7 +41,7 @@ const { config } = useConfigStore()
         <div class="body">
           <div class="block">
             文字内容
-            <el-input v-model="config.footer.content" />
+            <el-input v-model="config.footer.content" maxlength="10" show-word-limit />
           </div>
         </div>
         <div class="body">

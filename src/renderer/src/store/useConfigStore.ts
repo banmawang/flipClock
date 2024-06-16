@@ -8,7 +8,7 @@ export const useConfigStore = defineStore(
       clock: {
         bgColor: '#fff',
         color: '#000',
-        type: 'clock' as 'clock' | 'timing',
+        type: 'timing' as 'clock' | 'timing',
         timing: {
           hour: 0,
           minute: 30,
@@ -18,7 +18,7 @@ export const useConfigStore = defineStore(
       footer: {
         bgColor: '#16a085',
         color: '#fff',
-        content: '斑马兽网站，作者：何俊'
+        content: '作者：斑马兽'
       }
     })
     // function increment() {
@@ -30,5 +30,5 @@ export const useConfigStore = defineStore(
       // increment
     }
   },
-  { persist: true }
+  { persist: false }
 )

@@ -11,9 +11,9 @@ setIgnoreMouseEvents()
 <template>
   <Suspense>
     <RouterView v-slot="{ Component }">
-      <div>
+      <div class="max-w-fit">
         <div class="flex justify-center w-full mb-2 drag">
-          <crown theme="outline" size="35" class="text-yellow-400" />
+          <!-- <crown theme="outline" size="35" class="text-yellow-400" /> -->
         </div>
         <component :is="Component" class="flex flex-col justify-center items-center" />
         <FooterVue />

@@ -37,7 +37,7 @@
   &::before,
   &::after {
     display: block;
-    border-radius: 5px;
+    border-radius: 6px;
     @include size($width, calc($height/2));
     text-align: center;
     font: bold $height arial;

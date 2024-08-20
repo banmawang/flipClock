@@ -1,10 +1,10 @@
 {
-  "name": "flipclock",
-  "version": "1.0.0",
+  "name": "banmashou-clock",
+  "version": "1.0.30",
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "author": "斑马兽",
+  "homepage": "https://www.banmashou.com",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",

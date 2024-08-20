@@ -1,17 +1,21 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { electronApp, is, optimizer } from '@electron-toolkit/utils'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import './ipc'
+import { createTray } from './createTray'
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 330,
-    height: 600,
+    height: 750,
     show: false,
-    x: 1000,
-    y: 60,
+    // x: 1000,
+    // y: 60,
+    center: true,
+    //隐藏任务栏图标
+    skipTaskbar: true,
     hasShadow: false,
     maximizable: false,
     resizable: false,
@@ -29,9 +33,9 @@ function createWindow(): void {
   // mainWindow.setIgnoreMouseEvents(true, { forward: true })
 
   // 打开调试工具
-  if (is.dev) {
-    mainWindow.webContents.openDevTools()
-  }
+  // if (is.dev) {
+  //   mainWindow.webContents.openDevTools()
+  // }
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -55,6 +59,10 @@ function createWindow(): void {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  createTray()
+  //隐藏苹果dock图标
+  if (process.platform == 'darwin') app.dock.hide()
+
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 

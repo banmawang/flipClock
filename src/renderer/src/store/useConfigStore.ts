@@ -11,14 +11,15 @@ export const useConfigStore = defineStore(
         type: 'timing' as 'clock' | 'timing',
         timing: {
           hour: 0,
-          minute: 30,
-          second: 10
+          minute: 8,
+          second: 0
         }
       },
       footer: {
         bgColor: '#16a085',
         color: '#fff',
-        content: '作者：斑马兽'
+        content: '斑马兽',
+        isShow: true
       }
     })
     // function increment() {

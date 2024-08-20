@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: flipclock
+appId: com.banmashou.clock
+productName: 斑马兽桌面时间
 directories:
   buildResources: build
 files:
@@ -12,8 +12,12 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: flipclock
+  executableName: banmashou-clock
 nsis:
+  oneClick: false
+  allowElevation: true
+  perMachine: true
+  allowToChangeInstallationDirectory: true
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}

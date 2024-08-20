@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import FlipClock from '@renderer/composables/FlipClock'
-import { onMounted, watch } from 'vue'
+import { onMounted, provide, watch } from 'vue'
 import '@renderer/assets/flipClock.scss'
 import { useConfigStore } from '@renderer/store/useConfigStore'
+import FooterVue from '@renderer/components/footer.vue'
+
 const { config } = useConfigStore()
 const instance = new FlipClock({ el: '#bm', ...config.clock })
 
@@ -28,15 +30,19 @@ const refresh = () => {
     .config({ el: '#bm', ...config.clock })
     .render()
 }
+
+provide('refresh', refresh)
 </script>
 
 <template>
   <main>
     <div
       id="bm"
+      class="drag"
       :style="{ '--bgColor': config.clock.bgColor, '--color': config.clock.color }"
       @dblclick="refresh"
     ></div>
+    <FooterVue />
   </main>
 </template>
 

@@ -78,7 +78,7 @@ export default class FlipClock extends FlipNumber {
         <section>
           <div data-before="${before}" data-after="${after}"></div>
           <div data-before="${before}" data-after="${after}"></div>
-        </section> 
+        </section>
         `
       )
       if (index % 2 && index != this.nums.length - 1) {

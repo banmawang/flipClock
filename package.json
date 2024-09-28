@@ -1,6 +1,6 @@
 {
   "name": "banmashou-clock",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
   "author": "斑马兽",

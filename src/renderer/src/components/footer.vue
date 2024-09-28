@@ -2,13 +2,29 @@
 import Navbar from '@renderer/components/Navbar.vue'
 import { useConfigStore } from '@renderer/store/useConfigStore'
 import { ref } from 'vue'
+
 const { config } = useConfigStore()
 const flag = ref(true)
 const isShow = ref(false)
+const mouseInside = ref(false)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const timer: any = ref(null)
 
-const mouseover = () => {
+const handleMouseEnter = () => {
+  clearTimeout(timer.value)
+  mouseInside.value = true
   flag.value = false
   isShow.value = true
+}
+
+const handleMouseLeave = () => {
+  mouseInside.value = false
+  timer.value = setTimeout(() => {
+    if (!mouseInside.value) {
+      flag.value = true
+      isShow.value = false
+    }
+  }, 10)
 }
 </script>
 
@@ -18,7 +34,8 @@ const mouseover = () => {
     class="nodrag w-full px-2 text-center mt-2 py-1 font-bold rounded-md text-white flex items-center"
     :class="{ 'opacity-0': !config.footer.isShow }"
     :style="{ backgroundColor: config.footer.bgColor, color: config.footer.color }"
-    @mouseover="mouseover"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
   >
     <div v-if="config.clock.type != 'timing'" class="text-sm isrun">
       {{ config.footer.content }}
@@ -28,7 +45,8 @@ const mouseover = () => {
   <Navbar
     v-show="!flag && isShow"
     class="nodrag w-full select-none px-2 text-center mt-2 py-1 font-bold rounded-md text-white flex justify-center items-center bg-red-500 z-9999"
-    @mouseleave="flag = true"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
   />
 </template>
 
@@ -38,34 +56,22 @@ main {
 }
 
 .run {
-  animation: identifier 10s infinite both;
+  --slide-distance: calc(190px - 100%);
+  animation: slide 10s infinite both;
 }
 
 .isrun {
-  animation: isidentifier 10s infinite both;
+  --slide-distance: calc(300px - 100%);
+  animation: slide 10s infinite both;
 }
 
-@keyframes identifier {
-  from {
+@keyframes slide {
+  0%,
+  100% {
     transform: translateX(0);
   }
   50% {
-    transform: translateX(calc(190px - 100%));
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes isidentifier {
-  from {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(calc(300px - 100%));
-  }
-  to {
-    transform: translateX(0);
+    transform: translateX(var(--slide-distance));
   }
 }
 </style>

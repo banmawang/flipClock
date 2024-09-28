@@ -16,7 +16,7 @@ const refresh = inject<() => void>('refresh')
 
 <template>
   <main
-    class="nodrag rounded-md flex justify-center items-center gap-1"
+    class="nodrag rounded-md flex justify-center items-center gap-1 cursor-pointer"
     :style="{ color: config.footer.color }"
   >
     <div v-if="$route.name !== 'config'" @click="toggle">

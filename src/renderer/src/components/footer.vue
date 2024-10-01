@@ -31,20 +31,20 @@ const handleMouseLeave = () => {
 <template>
   <main
     v-show="flag"
-    class="nodrag w-full px-2 text-center mt-2 py-1 font-bold rounded-md text-white flex items-center"
+    class="nodrag h-8 w-full px-2 text-center mt-2 rounded-md text-white flex items-center"
     :class="{ 'opacity-0': !config.footer.isShow }"
     :style="{ backgroundColor: config.footer.bgColor, color: config.footer.color }"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
-    <div v-if="config.clock.type != 'timing'" class="text-sm isrun">
+    <div v-if="config.clock.type != 'timing'" class="isrun">
       {{ config.footer.content }}
     </div>
-    <div v-else class="text-sm run">{{ config.footer.content }}</div>
+    <div v-else class="run">{{ config.footer.content }}</div>
   </main>
   <Navbar
     v-show="!flag && isShow"
-    class="nodrag w-full select-none px-2 text-center mt-2 py-1 font-bold rounded-md text-white flex justify-center items-center bg-red-500 z-9999"
+    class="nodrag h-8 w-full select-none px-2 text-center mt-2 font-bold rounded-md text-white flex justify-center items-center bg-red-500 z-9999"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   />
@@ -57,12 +57,12 @@ main {
 
 .run {
   --slide-distance: calc(190px - 100%);
-  animation: slide 10s infinite both;
+  animation: slide 6s linear infinite;
 }
 
 .isrun {
   --slide-distance: calc(300px - 100%);
-  animation: slide 10s infinite both;
+  animation: slide 6s linear infinite;
 }
 
 @keyframes slide {
